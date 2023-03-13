@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="index.css">
+    <script lang="JavaScript" src="./index.js"></script>
+    <script lang="JavaScript" src="./cities.js"></script>
+
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-map.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-data-adapter.min.js"></script>
+    <script src="https://cdn.anychart.com/geodata/latest/custom/world/world.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
+    <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
+
+</head>
+
+<body style="-webkit-app-region: drag">
+
+    <div class="left" style="-webkit-app-region: drag">
+        <ul class="logo" style="-webkit-app-region: no-drag">
+            <img class="logo" src="./logo.jpg"></img>
+        </ul>
+
+        <ul class="tab_on" id="btn_dashboard">
+            <img class="icon" src="dashboard-fill.png" />
+            <h3 class="nav_title">Dashboard</h3>
+        </ul>
+
+        <ul class="tab" id="btn_map">
+            <img class="icon" src="map-filling.png" />
+            <h3 class="nav_title">Map</h3>
+        </ul>
+
+        <ul class="tab" id="btn_collections">
+            <img class="icon" src="collection-fill.png" />
+            <h3 class="nav_title">Collections</h3>
+        </ul>
+
+        <ul class="tab" id="btn_about">
+            <img class="icon" src="about.png" />
+            <h3 class="nav_title">About</h3>
+        </ul>
+
+        <h6 class="version">Weather v1.0<br />By Blocker</h6>
+    </div>
+    <div class="right" style="-webkit-app-region: no-drag">
+        <div class="titlebar" style="-webkit-app-region: drag">
+            <div class="title_area">
+                <h3 style="color: #ffffff;padding: 8px;padding-top: 10px;" id="title_dashboard">Dashboard</h3>
+            </div>
+            <div class="closebtn" id="closebtn">
+            </div>
+        </div>
+
+        <div class="maincontent" id="dashboard">
+            <div class="search_bar">
+                <div class="searchbox_container">
+                    <div class="center">
+                        <div class="md-search-container">
+                            <input type="text" placeholder="Search..." id="search_text">
+                            <button id="search_btn">
+                                <i class="material-icons">search</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="citylist" id="citylist" >
+                <h3 class="search_hint" id="search_hint">Search city names...</h3>
+            </div>
+            <div class="dashboard_container" id="dashboard_container" style="display: none;">
+                <div class="detail">
+                    <article class="card">
+                        <img src="./Temperature.png" alt="Temperature" >
+                        <div class="text">
+                            <h3>Temperature</h3>
+                            <p id="temp"> max:- <br /> mean:- <br /> avg:-</p>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="./windmill.png" alt="Wind">
+                        <div class="text">
+                            <h3>Wind</h3>
+                            <p id="wind"> max:- <br /> mean:- <br /> avg:-</p>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="./ppt.png" alt="precipitation">
+                        <div class="text">
+                            <h3>Precipitation</h3>
+                            <p id="ppt"> max:- <br /> mean:- <br /> avg:-</p>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="./cloud.png" alt="Clouds">
+                        <div class="text">
+                            <h3>Clouds</h3>
+                            <p id="clouds"> max:- <br /> mean:- <br /> avg:-</p>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="./humidity.png" alt="humidity">
+                        <div class="text">
+                            <h3>Humidity</h3>
+                            <p id="humidity"> max:- <br /> mean:- <br /> avg:-</p>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="./pressure.png" alt="Pressure">
+                        <div class="text">
+                            <h3>Pressure</h3>
+                            <p id="pressure"> max:- <br /> mean:- <br /> avg:-</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="graphs">
+                    <div class="DateSelector">
+                        <div class="month">
+                            <ul>
+                                <li class="prev" id="pre_btn">&#10094;</li>
+                                <li class="next" id="next_btn">&#10095;</li>
+                                <li id="months">
+                                    Januarary
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="days" id="days">
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                            <li>5</li>
+                            <li>6</li>
+                            <li>7</li>
+                            <li>8</li>
+                            <li>9</li>
+                            <li class="active">10</li>
+                            <li>11</li>
+                            <li>12</li>
+                            <li>13</li>
+                            <li>14</li>
+                            <li>15</li>
+                            <li>16</li>
+                            <li>17</li>
+                            <li>18</li>
+                            <li>19</li>
+                            <li>20</li>
+                            <li>21</li>
+                            <li>22</li>
+                            <li>23</li>
+                            <li>24</li>
+                            <li>25</li>
+                            <li>26</li>
+                            <li>27</li>
+                            <li>28</li>
+                            <li>29</li>
+                            <li>30</li>
+                            <li>31</li>
+                        </ul>
+                    </div>
+                    <div class="LinerGraph" id="LinerGraph">
+                        <div style="height: 320px;width: calc(100% - 20px); left: 10px;" id="LineChart">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="maincontent" id="mapcontainer" style="display: none;">
+        </div>
+        <div class="maincontent" id="collections" style="display: none;">
+            No collections found.
+        </div>
+        <div class="maincontent" id="about" style="display: none;color: #ffffff; align-items: center;">
+            <h3>Written by Blocker</h3>
+            <h2>Copyright 2023</h2>
+        </div>
+    </div>
+</body>
+
+</html>
